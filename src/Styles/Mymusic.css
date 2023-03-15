@@ -1,0 +1,66 @@
+
+
+
+.outter-container{
+    display: grid;
+    grid-template-columns: 6rem 2.5fr 6fr 6rem;
+    margin-bottom: 50rem;
+}
+
+.rightSection{
+    background-color: rgb(253, 253, 253);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 2rem;
+    border-radius: 15px;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
+    margin-bottom: 8rem;
+}
+
+.playerContainer{
+    margin-top: 3rem;
+    width: 350px;
+    height: 350px;
+}
+
+.image{
+    width: 100%;
+    background-color: rgb(241, 250, 193);
+    border-radius: 15px;
+}
+
+.leftSection{
+    grid-column: 2/3;
+    /* background-color: black; */
+}
+
+.rightSection h3{
+    margin-top: 1.5rem;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size:xx-large;
+}
+
+.rightSection .musicContainer{
+    margin-top: 1rem;
+}
+
+.rightSection .musicContainer ul li{
+    width: 35rem;
+    border-radius: 10px;
+    padding: 0.5rem 0.5rem;
+    list-style: none;
+    margin-top: 1.5rem;
+    background-color: aliceblue;
+    /* margin-bottom: 3rem; */
+}
+
+.rightSection .musicContainer ul li{
+    background-color: aqua;
+    display: flex;
+    justify-content: space-between;
+}
+
+.rightSection .musicContainer ul:last-child{
+    margin-bottom: 2rem;
+}

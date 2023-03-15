@@ -1,0 +1,219 @@
+.player-container{
+    position: fixed;
+    bottom: 0px;
+    width: 100vw;
+    height: 12vh;
+    background-color: rgb(0, 0, 0);
+    display: grid;
+    grid-template-columns: 8rem 1fr 4fr 1fr 8rem;
+    color: antiquewhite;
+    z-index: 999999;
+}
+
+.cover-pic,.coverplay{
+    grid-column: 2/3;
+    text-align: center;
+    margin-top: 0.5rem;
+    /* background-color: aqua; */
+}
+.cover-pic span,.coverplay span{
+    margin-left: 1rem;
+    position: absolute;
+    top: 2.2rem;
+}
+
+.cover-pic img ,.coverplay img{
+    border: 1px solid whitesmoke;
+    border-radius: 5px;
+    width: auto;
+    height: 10%;
+}
+
+.player-outline{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+}
+
+.seekBar-outilne{
+    margin-top: 0.9rem;
+    width: 80%;
+    height: 6px;
+    background-color: rgb(67, 66, 66);
+    border-radius: 5px;
+    padding: 0.8px;
+    /* transition: 0.3s ease-in-out; */
+}
+.seekBar-outilne:hover{
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+    background-color: rgba(229, 229, 229,0.6);
+}
+
+.seekbar{
+    background-color: rgb(58, 238, 58);
+    height: 4px;
+    border-radius: 5px;
+    display: block;
+    transition: 0.2s ease-in-out;
+}
+
+.player-controls > *{
+    font-size: xx-large;
+    margin: 0rem 0.8rem;
+}
+
+
+
+.playpause{
+    font-size: xxx-large;
+    position: relative;
+    top: 6px;
+    transition: 0.2s ease-in-out;
+}
+.playpause:hover{
+    transform: rotate(360deg);
+    cursor: pointer;
+}
+
+.player-controls>*:hover{
+    cursor: pointer;
+}
+
+.coverplay img{
+    grid-column: 2/3;
+    text-align: end;
+    animation-name: coverAnime;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+}
+
+.coverplay span{
+    animation-name: myAnime;
+    animation: 5s;
+    animation-iteration-count: infinite;
+}
+
+@keyframes myAnime {
+    0%  { color:white}
+    25% { color:orange}
+    50% { color:red}
+    75% { color:orange}
+    100% { color:white}
+}
+
+@keyframes coverAnime {
+    0% {border-color: blanchedalmond;}
+    25% {border-color: orange;}
+    50% {border-color: red;}
+    75% {border-color: orange;}
+    100% {border-color: blanchedalmond;}
+}
+
+.play{
+    color: rgb(103, 243, 103);
+}
+.pause{
+    color: rgb(237, 56, 56);
+}
+
+.duration-outline{
+    position: relative;
+    top: 0.55rem;
+    left: -3.5rem;
+}
+
+.previous:hover,.mynext:hover{
+    transition: 0.2s ease-in-out;
+    color: rgb(208, 195, 195);
+}
+
+.forward:hover{
+    color: rgb(207, 204, 204);
+    animation-name: moving;
+    animation-duration: 3s;
+    transition: 0.3s ease-in;
+}
+
+@keyframes moving {
+    0% {transform: translateX(0px);}
+    100% {transform: translateX(8px);}
+}
+
+.rewind:hover{
+    color: rgb(207, 204, 204);
+    animation-name: movingBack;
+    animation-duration: 3s;
+    transition: 0.3s ease-in;
+}
+
+@keyframes movingBack {
+    0% {transform: translateX(0px);}
+    100% {transform: translateX(-8px);}
+}
+
+
+@media screen and (max-width:1200px) {
+    .player-container{
+        width: 100vw;
+        height: 12vh;
+        background-color: rgb(0, 0, 0);
+        display: grid;
+        grid-template-columns: 2rem 1fr 5rem 4fr 1fr 2rem;
+        color: antiquewhite;
+        z-index: 9999;
+    }
+    .player-outline{
+        grid-column: 4/5;
+    }
+    .duration-outline{
+        left: 0px;
+    }
+}
+
+@media screen and (max-width:600px) {
+    .player-container{
+        display: grid;
+        grid-template-columns: 0.6rem 1fr 5rem 5fr 1fr 0.6rem;
+        color: antiquewhite;
+        z-index: 9999;
+    }
+    .player-controls *{
+        font-size:16px;
+        margin-top: 1rem;
+    }
+
+    .play{
+        position: relative;
+        top: 0px;
+        font-size: 20px;
+    }
+
+    .duration-outline{
+        left: 0px;
+    }
+
+}
+
+
+@media screen and (max-width:400px) {
+    .player-controls *{
+        font-size:10px;
+        margin-top: 1rem;
+    }
+
+    .play{
+        position: relative;
+        top: 2px;
+        font-size: 16px;
+    }
+
+    .duration-outline{
+        left: 0px;
+        font-size: smaller;
+    }
+
+
+
+}
