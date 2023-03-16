@@ -11,6 +11,7 @@ function MusicPlayer(props) {
         setSong,
         collections,
         songId,
+        songCover,
     }=props;
 
     // console.log(songSrc);
@@ -32,7 +33,7 @@ function MusicPlayer(props) {
         }
     })
 
-    console.log("palyer")
+    // console.log("palyer")
 
     function updateTime(e){
         const duration = e.target.duration;
@@ -57,26 +58,51 @@ function MusicPlayer(props) {
     function handleNext(e){
         setSongDuration("0.00")
         if(songId == 9){
-            setSong(collections[0]);   
+            setSong(collections[0]);
+            if(!isPlaying){
+                setIsPlaying(false); 
+            }  
         }else{
             setSong(collections[songId+1]);
+            if(!isPlaying){
+                setIsPlaying(false); 
+            }  
+
         }
     }
     
     function handlePrev(e){
         setSongDuration("0.00")
         if(songId == 0){
-            setSong(collections[collections.length-1]);   
+            setSong(collections[collections.length-1]); 
+            if(!isPlaying){
+                setIsPlaying(false); 
+            }   
         }else{
             setSong(collections[songId-1]);
-        }  
+            if(!isPlaying){
+                setIsPlaying(false); 
+            }   
+        }
+    }
+
+    let defaultCover = "https://cdn.pixabay.com/photo/2021/03/04/20/30/microphone-6069470_960_720.jpg";
+
+    function handleRewind(){
+        audioEle.current.currentTime -= 10; 
+    }
+
+    function handleForward(){
+        audioEle.current.currentTime += 10;
     }
 
     return (
         <>
         <div className='player-container'>
             <div className={!isPlaying ? "coverplay" : "cover-pic"}>
-             <img src="https://cdn.pixabay.com/photo/2021/03/04/20/30/microphone-6069470_960_720.jpg" alt="SongCover"/>
+             <div className='coverPic'>
+               <img src={songCover ? songCover : defaultCover} alt="SongCover"/>
+             </div>
              <span>{songName}</span>
             </div>
             <div className="player-outline">
@@ -86,10 +112,10 @@ function MusicPlayer(props) {
                 <div className='player-controls'>
                     <audio src={songSrc} ref={audioEle} onTimeUpdate={updateTime}/>
                  <AiOutlineStepBackward className='previous' onClick={handlePrev}/>
-                 <AiOutlineBackward className='rewind'/>
+                 <AiOutlineBackward className='rewind' onClick={handleRewind}/>
                  { !isPlaying ? <AiFillPauseCircle className='playpause pause' onClick={playPause}/> :
                  <AiFillPlayCircle className='playpause play' onClick={playPause}/>}
-                 <AiOutlineForward className='forward'/>
+                 <AiOutlineForward className='forward' onClick={handleForward}/>
                  <AiOutlineStepForward className='mynext' onClick={handleNext}/>
                 </div>
             </div>

@@ -24,7 +24,7 @@ nav{
 
 .first, .last{
     position: relative;
-    top: 6px;
+    top: -9px;
     border-radius: 4px;
     color: aliceblue;
     background-color: aliceblue;
@@ -38,6 +38,8 @@ nav{
     border-radius: 5px;
     background-color: #ea3244e9;
     color:  #ea3244e9;
+    position: relative;
+    top: 2px;
 }
 
 .nav-list{
