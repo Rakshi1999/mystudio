@@ -5,22 +5,7 @@ import { AiOutlineSearch } from "react-icons/ai";
 import {useState} from 'react';
 import Logo from './Logo';
 
-function Navbar(props) {
-
-    //  function Logo(){
-    //     return(
-    //         <div className='logo'>
-    //             <div className='logo-bars'>
-    //                 <span className='bar first'>s</span>
-    //                 <span className='bar'></span>
-    //                 <span className='bar middle'>s</span>
-    //                 <span className='bar'></span>
-    //                 <span className='bar last'>s</span>
-    //             </div>
-    //             <div className='logo-title'>Music Studio</div>
-    //         </div>
-    //     )
-    // }
+function Navbar({user,userName}) {
 
     const [ham,setHam] = useState(false);
     return (
@@ -33,10 +18,11 @@ function Navbar(props) {
             </div>
             <ul className={ ham ? "nav-list nav-list-show"    : "nav-list"}>
                 <NavLink to={"/"}>Home</NavLink>
-                <NavLink to={"/about"}>About</NavLink>
+                {/* <NavLink to={"/about"}>About</NavLink> */}
                 <NavLink to={"/mymusic"}>Mymusic</NavLink>
-                <NavLink to={"/login"}>Login</NavLink>
-                <NavLink to={"/signup"}>Sign up</NavLink>
+                {!user ? <NavLink to={"/login"}>Login</NavLink> : <NavLink to={'/'}>{userName}</NavLink>}
+                {/* <NavLink to={"/login"}>Login</NavLink> */}
+                {!user && <NavLink to={"/signup"}>Sign up</NavLink>}
             </ul>
                 <div onClick={()=>setHam(!ham)} className='ham-container'>
                 <span className='ham'></span>

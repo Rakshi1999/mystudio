@@ -19,6 +19,7 @@ function MusicPlayer(props) {
     // const [currentSong,setCurrentSong] = useState(songSrc);
     const [timeUpdate,setTimeUpdate] = useState(1);
     const [songDuration, setSongDuration] = useState("0.00");
+    const [currentDuration,setCurrentDuration] = useState(0.00);
     const progressRef = useRef(0);
     const audioEle = useRef();
     function playPause(){
@@ -41,6 +42,7 @@ function MusicPlayer(props) {
         setSongDuration((duration/60).toFixed(2));
         let percentage = (currentTime/duration)*100;
         setTimeUpdate(percentage);
+        setCurrentDuration(currentTime/60);
         if(currentTime === duration){
             setIsPlaying(true);
         }
@@ -120,7 +122,7 @@ function MusicPlayer(props) {
                 </div>
             </div>
             <div className='duration-outline'>
-                {songDuration}
+                {currentDuration.toFixed(2)}/{songDuration}
             </div>
         </div>
         </>

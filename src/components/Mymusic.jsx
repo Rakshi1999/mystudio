@@ -8,6 +8,7 @@ function Mymusic({collections,setSong}) {
     // console.log(e.target.parentElement.parentElement.parentElement.id);
     setSong(collections[e.target.parentElement.parentElement.parentElement.id]);
    }
+   let defaultCover = "https://cdn.pixabay.com/photo/2021/03/04/20/30/microphone-6069470_960_720.jpg";
     return (
         <>
           <div className='outter-container'>
@@ -24,7 +25,7 @@ function Mymusic({collections,setSong}) {
                         {
                           collections.map((obj,i)=>{
                             return(
-                              <li key={i} id={i}><div className='coverImg'><img src={obj.songCover} alt="cover"/></div><div>{obj.songName}</div><div onClick={handleChange}><AiFillPlayCircle/></div></li>
+                              <li key={i} id={i}><div className='coverImg'><img src={obj.songCover? obj.songCover : defaultCover} alt="cover"/></div><div>{obj.songName}</div><div onClick={handleChange}><AiFillPlayCircle/></div></li>
                             );
                           })
                         }

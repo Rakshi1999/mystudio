@@ -6,6 +6,11 @@
     height: 100vh;
 } */
 
+body{
+    /* background-color: aqua; */
+    z-index: -1;
+}
+
 .right-Section{
     display: flex;
     flex-direction: column;

@@ -31,20 +31,18 @@ function App() {
   {songSrc:song10,songCover:"",songName:"Stay",id:9},
 ]
   const [current,setcurrent] = useState(songs[8]);
-  const [songName,setSongName] = useState(songs[8].songName);
+  // const [songName,setSongName] = useState(songs[8].songName);
+  const [useLogin,setUserLogin] = useState(false);
+  const [userName,setUserName] = useState("");
 
-  console.log(current);
+  // console.log(current);
   
   return (
-    <ErrorComponent>
     <div className="app-container">
-     <Navbar/>
-     <ErrorComponent>
-      <MusicPlayer songSrc={current ? current.songSrc : null } songCover={current ? current.songCover : null} songName={current ? current.songName : null} songId={current ? current.id : null} setSong={setcurrent} collections={songs}/>
-     </ErrorComponent>
-     <Routing collections={songs} setSong={setcurrent}/>
+     <Navbar user={useLogin} userName={userName}/>
+     <MusicPlayer songSrc={current ? current.songSrc : null } songCover={current ? current.songCover : null} songName={current ? current.songName : null} songId={current ? current.id : null} setSong={setcurrent} collections={songs}/>
+     <Routing collections={songs} setSong={setcurrent} setUser={setUserLogin} user={useLogin} setUserName={setUserName}/>
     </div>
-    </ErrorComponent>
   );
 }
 

@@ -231,6 +231,16 @@
         font-size: smaller;
     }
 
+    .player-controls *{
+        margin-left: 0px;
+        font-size: 14px;
+    }
 
+    .play, .pause{
+        font-size: 16px;
+    }
 
+    .player-container{
+        z-index: 999999;
+    }
 }
