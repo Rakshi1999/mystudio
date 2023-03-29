@@ -59,7 +59,7 @@ function MusicPlayer(props) {
 
     function handleNext(e){
         setSongDuration("0.00")
-        if(songId == 9){
+        if(songId === 9){
             setSong(collections[0]);
             if(!isPlaying){
                 setIsPlaying(false); 
@@ -75,7 +75,7 @@ function MusicPlayer(props) {
     
     function handlePrev(e){
         setSongDuration("0.00")
-        if(songId == 0){
+        if(songId === 0){
             setSong(collections[collections.length-1]); 
             if(!isPlaying){
                 setIsPlaying(false); 

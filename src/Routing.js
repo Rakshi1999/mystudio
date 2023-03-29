@@ -1,7 +1,6 @@
 import React from 'react';
 import { Routes, Route } from 'react-router';
 import About from './components/About';
-import Contact from './components/Contact';
 import ErrorComponent from './components/ErrorComponent';
 import Home from './components/Home';
 import Login from './components/Login';
