@@ -1,5 +1,4 @@
-import React,{useState,useRef} from 'react';
-import MusicPlayer from './MusicPlayer';
+import React,{useRef} from 'react';
 import '../Styles/Home.css'
 import pic1 from '../Styles/assets/carsorel/1.jpeg'
 import pic2 from '../Styles/assets/carsorel/2.jpeg'
@@ -49,12 +48,12 @@ const Home = () => {
     }
 
     function TrendingScrollHandlerLeft(){
-        console.log(trendingCarouselRef.current.scrollLeft+" "+"leftbtn");
+        // console.log(trendingCarouselRef.current.scrollLeft+" "+"leftbtn");
         trendingCarouselRef.current.scrollLeft -= (trendingImageRef.current.clientWidth);
     }
 
     function TrendingScrollHandlerRight(){
-        console.log(trendingCarouselRef.current.scrollLeft+" "+"rightbtn");
+        // console.log(trendingCarouselRef.current.scrollLeft+" "+"rightbtn");
         trendingCarouselRef.current.scrollLeft += (trendingImageRef.current.clientWidth);
     }
 
@@ -70,7 +69,7 @@ const Home = () => {
         return(
             <>
             <div className='cardHolder'>
-                <img src={props.src} ref={ref}/>
+                <img src={props.src} ref={ref} alt={props.name}/>
                 <div>{props.name}</div>
             </div>
             </>
