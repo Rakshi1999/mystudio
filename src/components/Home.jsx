@@ -67,7 +67,6 @@ const Home = () => {
 
 
     const TrendingCard = React.forwardRef((props,ref) =>{
-        // console.log(ref);
         return(
             <>
             <div className='cardHolder'>

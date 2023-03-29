@@ -15,7 +15,7 @@ import song7 from './Styles/assets/Songs/mymusic/NEFFEX - Cold ❄️.mp3'
 import song8 from './Styles/assets/Songs/mymusic/Otnicka - Peaky Blinder.mp3'
 import song9 from './Styles/assets/Songs/mymusic/Replay - Iyaz.mp3'
 import song10 from './Styles/assets/Songs/mymusic/Stay.mp3'
-import ErrorComponent from "./components/ErrorComponent";
+// import ErrorComponent from "./components/ErrorComponent";
 
 
 function App() {
