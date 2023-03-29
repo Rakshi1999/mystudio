@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import '../Styles/Signup.css'
 import Logo from './Logo';
 
@@ -14,8 +14,6 @@ function Signup(props) {
 
     function handleSubmit(e){
         e.preventDefault();
-        // navigate('/login');
-
         const userObj = {
             userName: userNameRef.current.value,
             email: userEmailRef.current.value,
@@ -28,12 +26,26 @@ function Signup(props) {
             let arr = JSON.parse(data);
             arr.push(userObj);
             localStorage.setItem("userList",JSON.stringify(arr));
+            navigate('/login');
         }else{
             let arr =[];
             arr.push(userObj);
             localStorage.setItem("userList",JSON.stringify(arr));
+            navigate('/login');
         }
     }
+
+    function handleConfirm(e){
+        e.preventDefault();
+
+        if(confirmPasswordRef.current.value !== passwordRef.current.value){
+            confirmPasswordRef.current.style.outlineColor="red";
+        }else{
+            confirmPasswordRef.current.style.outlineColor="green";
+        }
+
+    }
+
     return (
         <>
         <div className='signupFormContainer'>
@@ -41,13 +53,13 @@ function Signup(props) {
                 <div className='signupLogo'>{<Logo/>}</div>
                 <form onSubmit={handleSubmit}>
                     <label htmlFor="userName">User Name</label>
-                    <input id='userName' ref={userNameRef}/>
+                    <input id='userName' ref={userNameRef} required/>
                     <label htmlFor="userEmail">Email</label>
-                    <input id='userEmail' ref={userEmailRef}/>
+                    <input id='userEmail'type="email" ref={userEmailRef} required/>
                     <label htmlFor="userPassword">Password</label>
-                    <input id='userPassword' ref={passwordRef}/>
+                    <input id='userPassword' type="password" ref={passwordRef} required/>
                     <label htmlFor="userConfirm">Confirm Password</label>
-                    <input id='userCOnfirm' ref={confirmPasswordRef}/>
+                    <input id='userConfirm' type="password" ref={confirmPasswordRef} required onChange={handleConfirm}/>
                     <button type='submit'>SignUp</button>
                 </form>
             </div>

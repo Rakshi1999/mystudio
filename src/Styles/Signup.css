@@ -32,6 +32,13 @@
     width: 100%;
 }
 
+.formContainer form input{
+    /* background-color: aqua; */
+    border-radius: 4px;
+    /* outline-style: hidden;
+    outline-width: 2rem; */
+}
+
 .formContainer input{
     padding: 0.2rem 0.2rem;
 }
@@ -48,9 +55,29 @@
     /* background-color: rgb(255, 191, 0); */
 }
 
+#userEmail:invalid{
+    outline-color: red;
+}
+
+#userEmail:valid{
+    outline-color: green;
+}
+
 .signupLogo{
     margin-top: 10px;
 }
+
+.formContainer button{
+    border-radius: 5px;
+    border:0px;
+    transition: 0.25s ease-in-out;
+}
+
+.formContainer button:hover{
+    background-color: rgb(111, 238, 111);
+    cursor: pointer;
+}
+
 @media screen and (max-width:700px) {
     .formContainer{
         width: 80%;

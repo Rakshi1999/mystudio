@@ -195,9 +195,10 @@
     .player-controls *{
         font-size:16px;
         margin-top: 1rem;
+        margin-left: 0rem;
     }
 
-    .play{
+    .play,.pause{
         position: relative;
         top: 0px;
         font-size: 20px;
@@ -207,7 +208,7 @@
         left: 0px;
     }
     .cover-pic span, .coverplay span{
-        top: 60px;
+        top: 65px;
         left: 65px;
     }
 

@@ -31,7 +31,6 @@ import {NavLink} from 'react-router-dom'
 import { AiOutlineCaretLeft, AiOutlineCaretRight } from "react-icons/ai";
 
 const Home = () => {
-
     const imgRef = useRef();
     const carouselRef = useRef();
 
