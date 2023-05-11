@@ -12,34 +12,20 @@ const Routing = ({ collections, setSong, setUser, user }) => {
   return (
     <>
       <Routes>
-        <Route path="https://musicstudio.onrender.com/" element={<Home />} />
-        <Route
-          path="https://musicstudio.onrender.com/about"
-          element={<About />}
-        />
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
         {/* <Route path="/contact" element={ <Contact/> }/> */}
-        {!user && (
-          <Route
-            path="https://musicstudio.onrender.com/signup"
-            element={<Signup />}
-          />
-        )}
+        {!user && <Route path="/signup" element={<Signup />} />}
+        <Route path="/login" element={<Login setUser={setUser} />} />
         <Route
-          path="https://musicstudio.onrender.com/login"
-          element={<Login setUser={setUser} />}
-        />
-        <Route
-          path="https://musicstudio.onrender.com/mymusic"
+          path="/mymusic"
           element={
             <ErrorComponent>
               <Mymusic collections={collections} setSong={setSong} />
             </ErrorComponent>
           }
         />
-        <Route
-          path="https://musicstudio.onrender.com/*"
-          element={<PageNotFound />}
-        />
+        <Route path="*" element={<PageNotFound />} />
       </Routes>
     </>
   );
