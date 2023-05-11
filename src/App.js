@@ -133,7 +133,7 @@ function App() {
             backgroundColor: "grey",
           }}
         >
-          <HashLoader color="white" size="120" />
+          <HashLoader color="white" size="100" />
         </div>
       ) : (
         <div className="app-container">

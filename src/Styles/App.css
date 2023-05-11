@@ -37,3 +37,14 @@
     50%{color: rgb(26, 192, 238);transform: translate(20px)}
 
 }
+
+@media (max-width:600px) {
+    .pageNotFoundTitle{
+        background-color: aqua;
+        font-size: x-large;
+    }
+    .pageNotFoundTitle span{
+        font-size: xx-large;
+    }
+
+}
