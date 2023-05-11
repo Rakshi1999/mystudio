@@ -15,6 +15,7 @@ import song8 from "./Styles/assets/Songs/mymusic/Otnicka - Peaky Blinder.mp3";
 import song9 from "./Styles/assets/Songs/mymusic/Replay - Iyaz.mp3";
 import song10 from "./Styles/assets/Songs/mymusic/Stay.mp3";
 import axios from "axios";
+import HashLoader from "react-spinners/HashLoader";
 
 export const LoginContext = createContext();
 
@@ -79,9 +80,11 @@ function App() {
   const [useLogin, setUserLogin] = useState(false);
   const [userName, setUserName] = useState("");
   const [isPlaying, setIsPlaying] = useState(true);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     if (localStorage.getItem("token")) {
+      setLoading(true);
       const headers = { Authorization: localStorage.getItem("token") };
       axios
         .get("https://musicstudio.onrender.com/verify", { headers })
@@ -89,13 +92,23 @@ function App() {
           console.log(res.data);
           setUserName(res.data.username);
           setUserLogin(true);
+          setLoading(false);
         })
         .catch((err) => {
+          setLoading(false);
           alert(err.response.data.message);
         });
     }
   }, []);
 
+  useEffect(() => {
+    let id = setTimeout(() => {
+      setLoading(false);
+    }, 1500);
+    return () => {
+      clearTimeout(id);
+    };
+  }, []);
 
   return (
     <LoginContext.Provider
@@ -110,23 +123,37 @@ function App() {
         setColorIndex,
       }}
     >
-      <div className="app-container">
-        <Navbar user={useLogin} userName={userName} />
-        <MusicPlayer
-          songSrc={current ? current.songSrc : null}
-          songCover={current ? current.songCover : null}
-          songName={current ? current.songName : null}
-          songId={current ? current.id : null}
-          setSong={setcurrent}
-          collections={songs}
-        />
-        <Routing
-          collections={songs}
-          setSong={setcurrent}
-          setUser={setUserLogin}
-          user={useLogin}
-        />
-      </div>
+      {loading ? (
+        <div
+          style={{
+            width: "100vw",
+            height: "100vh",
+            display: "grid",
+            placeItems: "center",
+            backgroundColor: "grey",
+          }}
+        >
+          <HashLoader color="white" size="120" />
+        </div>
+      ) : (
+        <div className="app-container">
+          <Navbar user={useLogin} userName={userName} />
+          <MusicPlayer
+            songSrc={current ? current.songSrc : null}
+            songCover={current ? current.songCover : null}
+            songName={current ? current.songName : null}
+            songId={current ? current.id : null}
+            setSong={setcurrent}
+            collections={songs}
+          />
+          <Routing
+            collections={songs}
+            setSong={setcurrent}
+            setUser={setUserLogin}
+            user={useLogin}
+          />
+        </div>
+      )}
     </LoginContext.Provider>
   );
 }

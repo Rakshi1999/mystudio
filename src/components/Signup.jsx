@@ -3,8 +3,10 @@ import "../Styles/Signup.css";
 import Logo from "./Logo";
 import axios from "axios";
 import Modal from "./Modal";
+import PulseLoader from "react-spinners/PulseLoader";
 
 function Signup() {
+  const [isLoading, setIsLoading] = useState(false);
   const userNameRef = useRef();
   const userEmailRef = useRef();
   const passwordRef = useRef();
@@ -17,6 +19,7 @@ function Signup() {
     e.preventDefault();
     let check = checkValidation();
     if (validation && check) {
+      setIsLoading(true);
       axios
         .post("https://musicstudio.onrender.com/signup", {
           username: userNameRef.current.value,
@@ -24,7 +27,8 @@ function Signup() {
           password: passwordRef.current.value,
         })
         .then((res) => {
-          console.log(res);
+          // console.log(res);
+          setIsLoading(false);
           if (res.data.message === "success") {
             setModal(true);
           } else {
@@ -34,7 +38,7 @@ function Signup() {
         })
         .catch((err) => {
           console.log(err);
-          // alert(err.response.data.message);
+          setIsLoading(false);
           setGeneralError(err.response.data.message);
         });
     }
@@ -97,7 +101,9 @@ function Signup() {
               required
               onChange={handleConfirm}
             />
-            <button type="submit">SignUp</button>
+            <button type="submit">
+              {isLoading ? <PulseLoader size="10" /> : "SignUp"}
+            </button>
           </form>
         </div>
       </div>

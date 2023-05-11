@@ -1,14 +1,17 @@
 import axios from "axios";
-import React, { useContext, useRef } from "react";
+import React, { useContext, useRef, useState } from "react";
 import ReactDOM from "react-dom";
 import { useNavigate } from "react-router";
 import { LoginContext } from "../App";
+import PulseLoader from "react-spinners/PulseLoader";
 
 function Modal(props) {
   const contextValue = useContext(LoginContext);
   const navigate = useNavigate();
+  const [isLoadingModal, setIsLoadingModal] = useState(false);
   const otpRef = useRef();
   async function handleVerify() {
+    setIsLoadingModal(true);
     axios
       .post("https://musicstudio.onrender.com/emailverify", {
         email: props.email,
@@ -16,6 +19,7 @@ function Modal(props) {
       })
       .then((res) => {
         // console.log(res);
+        setIsLoadingModal(false);
         navigate("/");
         contextValue.setUserName(res.data.username);
         contextValue.setUserLogin(true);
@@ -23,6 +27,7 @@ function Modal(props) {
       })
       .catch((e) => {
         alert(e.response.data.message);
+        setIsLoadingModal(false);
       });
   }
 
@@ -40,8 +45,10 @@ function Modal(props) {
           <label>Enter 6 digits OTP sent to your registered email:</label>
           <input type="number" max="6" required ref={otpRef} />
         </fieldset>
-        <p className="modal-title">Kindly check you spam emails too.</p>
-        <button onClick={handleVerify}>Verify</button>
+        <p className="modal-title">Kindly check your spam emails too.</p>
+        <button onClick={handleVerify}>
+          {isLoadingModal ? <PulseLoader size="10" color="white" /> : "Verify"}
+        </button>
       </div>
     </div>,
     document.getElementById("portal")

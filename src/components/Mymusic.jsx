@@ -13,7 +13,6 @@ function Mymusic({ collections, setSong }) {
     setSong(collections[e.target.id]);
     contextValue.setIsPlaying(false);
     setColorIndex(e.target.id);
-    // console.log(e.target.id);
   }
   let defaultCover =
     "https://cdn.pixabay.com/photo/2021/03/04/20/30/microphone-6069470_960_720.jpg";
