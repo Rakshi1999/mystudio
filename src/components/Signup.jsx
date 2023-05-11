@@ -18,7 +18,7 @@ function Signup() {
     let check = checkValidation();
     if (validation && check) {
       axios
-        .post("/signup", {
+        .post("https://musicstudio.onrender.com/signup", {
           username: userNameRef.current.value,
           email: userEmailRef.current.value,
           password: passwordRef.current.value,

@@ -10,7 +10,7 @@ function Modal(props) {
   const otpRef = useRef();
   async function handleVerify() {
     axios
-      .post("/emailverify", {
+      .post("https://musicstudio.onrender.com/emailverify", {
         email: props.email,
         otp: otpRef.current.value,
       })

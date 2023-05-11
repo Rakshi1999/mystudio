@@ -12,7 +12,7 @@ function Navbar({ user, userName }) {
   const [ham, setHam] = useState(false);
 
   async function handleLogOut() {
-    let res = await axios.get("/logout", {
+    let res = await axios.get("https://musicstudio.onrender.com/logout", {
       headers: { Authorization: localStorage.getItem("token") },
     });
     if (res.status === 200) {

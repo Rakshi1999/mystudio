@@ -22,7 +22,7 @@ function Login({ setUser }) {
   function handleSubmit(e) {
     e.preventDefault();
     axios
-      .post("/login", {
+      .post("https://musicstudio.onrender.com/login", {
         email: emailRef.current.value,
         password: passwordRef.current.value,
       })

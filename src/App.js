@@ -84,7 +84,7 @@ function App() {
     if (localStorage.getItem("token")) {
       const headers = { Authorization: localStorage.getItem("token") };
       axios
-        .get("/verify", { headers })
+        .get("https://musicstudio.onrender.com/verify", { headers })
         .then((res) => {
           console.log(res.data);
           setUserName(res.data.username);

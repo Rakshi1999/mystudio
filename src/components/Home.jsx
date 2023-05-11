@@ -84,7 +84,7 @@ const Home = () => {
     let token = localStorage.getItem("token");
     if (!token) {
       alert("Please sign up for complete access");
-      navigate("/mymusic");
+      navigate("https://musicstudio.onrender.com/mymusic");
       // } else {
       //   alert(
       //     "Thank you for the sign up, please stay tunned we will roll an update soon!!!"
