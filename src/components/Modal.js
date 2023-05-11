@@ -21,7 +21,9 @@ function Modal(props) {
         contextValue.setUserLogin(true);
         localStorage.setItem("token", res.data.token);
       })
-      .catch((e) => console.log(e.message));
+      .catch((e) => {
+        alert(e.response.data.message);
+      });
   }
 
   if (!props.open) return null;
