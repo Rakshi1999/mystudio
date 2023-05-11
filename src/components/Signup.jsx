@@ -1,71 +1,108 @@
-import React, { useRef } from 'react';
-import '../Styles/Signup.css'
-import Logo from './Logo';
+import React, { useRef, useState } from "react";
+import "../Styles/Signup.css";
+import Logo from "./Logo";
+import axios from "axios";
+import Modal from "./Modal";
 
-import {useNavigate} from 'react-router-dom';
+function Signup() {
+  const userNameRef = useRef();
+  const userEmailRef = useRef();
+  const passwordRef = useRef();
+  const confirmPasswordRef = useRef();
+  const [validation, setValidation] = useState(false);
+  const [generalError, setGeneralError] = useState("");
+  const [modal, setModal] = useState(false);
 
-function Signup(props) {
-
-    const navigate = useNavigate();
-    const userNameRef = useRef();
-    const userEmailRef = useRef();
-    const passwordRef = useRef();
-    const confirmPasswordRef = useRef();
-
-    function handleSubmit(e){
-        e.preventDefault();
-        const userObj = {
-            userName: userNameRef.current.value,
-            email: userEmailRef.current.value,
-            password: passwordRef.current.value,
-        }
-
-        let data = localStorage.getItem("userList");
-
-        if(data){
-            let arr = JSON.parse(data);
-            arr.push(userObj);
-            localStorage.setItem("userList",JSON.stringify(arr));
-            navigate('/login');
-        }else{
-            let arr =[];
-            arr.push(userObj);
-            localStorage.setItem("userList",JSON.stringify(arr));
-            navigate('/login');
-        }
+  async function handleSubmit(e) {
+    e.preventDefault();
+    let check = checkValidation();
+    if (validation && check) {
+      axios
+        .post("/signup", {
+          username: userNameRef.current.value,
+          email: userEmailRef.current.value,
+          password: passwordRef.current.value,
+        })
+        .then((res) => {
+          console.log(res);
+          if (res.data.message === "success") {
+            setModal(true);
+          } else {
+            alert(res.data.message);
+            setGeneralError(res.data.message);
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+          // alert(err.response.data.message);
+          setGeneralError(err.response.data.message);
+        });
     }
+  }
 
-    function handleConfirm(e){
-        e.preventDefault();
-
-        if(confirmPasswordRef.current.value !== passwordRef.current.value){
-            confirmPasswordRef.current.style.outlineColor="red";
-        }else{
-            confirmPasswordRef.current.style.outlineColor="green";
-        }
-
+  function checkValidation() {
+    if (
+      userEmailRef.current.value &&
+      userNameRef.current.value &&
+      passwordRef.current.value &&
+      confirmPasswordRef.current.value
+    ) {
+      return true;
+    } else {
+      return false;
     }
+  }
 
-    return (
-        <>
-        <div className='signupFormContainer'>
-            <div className='formContainer'>
-                <div className='signupLogo'>{<Logo/>}</div>
-                <form onSubmit={handleSubmit}>
-                    <label htmlFor="userName">User Name</label>
-                    <input id='userName' ref={userNameRef} required/>
-                    <label htmlFor="userEmail">Email</label>
-                    <input id='userEmail'type="email" ref={userEmailRef} required/>
-                    <label htmlFor="userPassword">Password</label>
-                    <input id='userPassword' type="password" ref={passwordRef} required/>
-                    <label htmlFor="userConfirm">Confirm Password</label>
-                    <input id='userConfirm' type="password" ref={confirmPasswordRef} required onChange={handleConfirm}/>
-                    <button type='submit'>SignUp</button>
-                </form>
-            </div>
+  function handleConfirm(e) {
+    e.preventDefault();
+    if (confirmPasswordRef.current.value !== passwordRef.current.value) {
+      confirmPasswordRef.current.style.outlineColor = "red";
+      setValidation(false);
+    } else {
+      confirmPasswordRef.current.style.outlineColor = "green";
+      setValidation(true);
+    }
+  }
+
+  return (
+    <>
+      {modal && (
+        <Modal
+          open={modal}
+          email={userEmailRef.current.value}
+          setModal={setModal}
+        />
+      )}
+      <div className="signupFormContainer">
+        <div className="formContainer">
+          <div className="signupLogo">{<Logo />}</div>
+          <form onSubmit={handleSubmit}>
+            {generalError && <p style={{ color: "red" }}>{generalError}</p>}
+            <label htmlFor="userName">User Name</label>
+            <input id="userName" ref={userNameRef} required />
+            <label htmlFor="userEmail">Email</label>
+            <input id="userEmail" type="email" ref={userEmailRef} required />
+            <label htmlFor="userPassword">Password</label>
+            <input
+              id="userPassword"
+              type="password"
+              ref={passwordRef}
+              required
+            />
+            <label htmlFor="userConfirm">Confirm Password</label>
+            <input
+              id="userConfirm"
+              type="password"
+              ref={confirmPasswordRef}
+              required
+              onChange={handleConfirm}
+            />
+            <button type="submit">SignUp</button>
+          </form>
         </div>
-        </>
-    );
+      </div>
+    </>
+  );
 }
 
 export default Signup;

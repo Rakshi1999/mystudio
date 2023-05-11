@@ -42,6 +42,57 @@ nav{
     top: 2px;
 }
 
+.playMiddle{
+    animation: myAnMiddle;
+    animation-duration: 2.5s;
+    animation-iteration-count: infinite;
+    animation-delay: 0.2s;
+}
+
+@keyframes myAnMiddle {
+    0%{
+        background-color: #f3172de9;
+    }25%{
+        background-color: #f88591e9;
+    }50%{
+        background-color: #ffffffe9;
+    }75%{
+        background-color: #e15b68e9;
+    }
+    100%{
+        background-color: #f3172de9;
+    }
+}
+
+
+.playFirst ,.playLast{
+    animation: myAnSide;
+    animation-duration: 3s;
+    animation-iteration-count: infinite;
+}
+
+@keyframes myAnSide {
+    0%{
+        background-color: rgb(255, 255, 255);
+        color: rgb(255, 255, 255);
+    }25%{
+        background-color: rgb(176, 139, 139);
+        color: rgb(176, 139, 139);
+    }50%{
+        background-color: rgb(115, 95, 95);
+        color: rgb(115, 95, 95);
+    }75%{
+        background-color: rgb(70, 62, 62);
+        color: rgb(70, 62, 62);
+    }
+    100%{
+        background-color: rgb(139, 72, 72);
+        color: rgb(139, 72, 72);
+    }
+}
+
+
+
 .nav-list{
     position: relative;
 }
@@ -111,8 +162,24 @@ nav{
     background-color: #fdfdfd;
     border-radius: 5px;
 }
+.cxTitle{
+    transition: 0.2s ease-in-out;
+}
 
-
+.cxTitle::before{
+    content: "Hello!!";
+    position: absolute;
+    top: -9px;
+    font-size: 12px;
+    color: aqua;
+}
+.logOut{
+    border-radius: 5px;
+    background-color: rgba(240, 31, 31,0.8);
+}
+.logOut:hover{
+    cursor: pointer;
+}
 
 
 @media screen and (max-width:1000px) {
@@ -136,11 +203,13 @@ nav{
     /* .nav-list */
 
     .nav-list{
-        /* opacity: 0; */
-        display: none;
-        /* display: flex; */
+        opacity: 0;
+        /* display: none; */
+        display: flex;
         flex-direction: column;
-
+        visibility: hidden;
+        height: 0px;
+        transition: 0.2s ease-in-out;
     }
 
     .nav-list > *{
@@ -148,8 +217,14 @@ nav{
     }
 
     .nav-list-show{
+        /* display: flex; */
         display: flex;
+        flex-direction: column;
+        visibility: visible;
+        height: 180px;
+        opacity: 1;
     }
+
     .ham-container-none{
         display: none;
     }
@@ -163,6 +238,18 @@ nav{
         position: relative;
         top: 15px;
         right: -8px;
+    }
+
+    .cxTitle{
+        margin-top: 1.8rem;
+    }
+
+    .cxTitle::before{
+        content: "Hello!!";
+        /* position: absolute; */
+        top:50%;
+        font-size: 15px;
+        color: aqua;
     }
 
 }

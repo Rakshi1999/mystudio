@@ -24,9 +24,11 @@
 
 .coverPic{
     width: 50px;
-    height: 65px;
+    /* height: 80px; */
     position: relative;
-    left: 2.8rem;
+    /* display: grid; */
+    place-content: center;
+    left: 2.4rem;
     /* background-color: aqua; */
 }
 
@@ -61,7 +63,7 @@
 
 .seekbar{
     background-color: rgb(58, 238, 58);
-    height: 4px;
+    height: 4.2px;
     border-radius: 5px;
     display: block;
     transition: 0.2s ease-in-out;
@@ -71,8 +73,6 @@
     font-size: xx-large;
     margin: 0rem 0.8rem;
 }
-
-
 
 .playpause{
     font-size: xxx-large;
@@ -99,7 +99,7 @@
 
 .coverplay span{
     animation-name: myAnime;
-    animation: 5s;
+    animation: 0.8s;
     animation-iteration-count: infinite;
 }
 
@@ -162,6 +162,19 @@
     100% {transform: translateX(-8px);}
 }
 
+.duration-outline{
+    display: flex;
+    flex-direction: column;
+}
+
+.volume{
+    margin-top: 1rem;
+    font-size: x-large;
+}
+.volume:hover{
+    cursor: pointer;
+}
+
 
 @media screen and (max-width:1300px) {
     .player-container{
@@ -185,12 +198,32 @@
     }
 }
 
-@media screen and (max-width:600px) {
+@media screen and (max-width:640px) {
     .player-container{
         display: grid;
-        grid-template-columns: 0.6rem 1fr 5rem 5fr 1fr 0.6rem;
+        grid-template-columns: 0.4fr 1fr 4fr 1fr 0.4fr;
         color: antiquewhite;
         z-index: 9999;
+    }
+
+    .coverplay,.cover-pic{
+        grid-column: 2/3;
+        display: grid;
+        grid-column: 0.2fr 2fr 0.2fr;
+        grid-row: 1fr;
+        position: relative;
+    }
+    .coverplay,.cover-pic img{
+        width: 40px;
+    }
+    .songTitle{
+        position: absolute;
+        width: 220px;
+        text-align: left;
+    }
+
+    .player-outline{
+        grid-column: 3/4;
     }
     .player-controls *{
         font-size:16px;
@@ -207,6 +240,9 @@
     .duration-outline{
         left: 0px;
     }
+    .duration-outline .duration{
+        font-size: 12px;
+    }
     .cover-pic span, .coverplay span{
         top: 65px;
         left: 65px;
@@ -220,6 +256,11 @@
         font-size:10px;
         margin-top: 1rem;
     }
+    /* .songTitle{
+        height: 12px;
+        width: 150px;
+        position: absolute;
+    } */
 
     .play{
         position: relative;

@@ -6,21 +6,29 @@ import Home from './components/Home';
 import Login from './components/Login';
 import Mymusic from './components/Mymusic';
 import Signup from './components/Signup';
+import PageNotFound from "./components/PageNotFound";
 
-
-const Routing = ({collections,setSong,setUser,user,setUserName}) => {
-    return (
-       <>
-       <Routes>
-         <Route path="/" element={ <Home/> } />
-         <Route path="/about" element={ <About/> }/>
-         {/* <Route path="/contact" element={ <Contact/> }/> */}
-         { !user && <Route path="/signup" element={ <Signup/> } />}
-         <Route path="/login" element={ <Login setUser={setUser} setUserName={setUserName}/> } />
-         <Route path="/mymusic" element={<ErrorComponent><Mymusic collections={collections} setSong={setSong}/></ErrorComponent>} />
-       </Routes>
-       </>
-    );
+const Routing = ({ collections, setSong, setUser, user }) => {
+  return (
+    <>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+        {/* <Route path="/contact" element={ <Contact/> }/> */}
+        {!user && <Route path="/signup" element={<Signup />} />}
+        <Route path="/login" element={<Login setUser={setUser} />} />
+        <Route
+          path="/mymusic"
+          element={
+            <ErrorComponent>
+              <Mymusic collections={collections} setSong={setSong} />
+            </ErrorComponent>
+          }
+        />
+        <Route path="*" element={<PageNotFound />} />
+      </Routes>
+    </>
+  );
 };
 
 export default Routing;

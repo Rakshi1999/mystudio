@@ -1,18 +1,35 @@
-import React from 'react';
+import React, { useContext } from "react";
+import { LoginContext } from "../App";
 
 function Logo(props) {
-    return(
-        <div className='logo'>
-            <div className='logo-bars'>
-                <span className='bar first'>s</span>
-                <span className='bar'></span>
-                <span className='bar middle'></span>
-                <span className='bar'></span>
-                <span className='bar last'>s</span>
-            </div>
-            <div className='logo-title'>Music Studio</div>
-        </div>
-    )
+  const contextValue = useContext(LoginContext);
+  //   alert(contextValue.isPlaying)
+  return (
+    <div className="logo">
+      <div className="logo-bars">
+        <span
+          className={
+            !contextValue.isPlaying ? `bar first playFirst` : `bar first`
+          }
+        >
+          s
+        </span>
+        <span className="bar"></span>
+        <span
+          className={
+            !contextValue.isPlaying ? `bar middle playMiddle` : `bar middle`
+          }
+        ></span>
+        <span className="bar"></span>
+        <span
+          className={!contextValue.isPlaying ? `bar last playLast` : `bar last`}
+        >
+          s
+        </span>
+      </div>
+      <div className="logo-title">Music Studio</div>
+    </div>
+  );
 }
 
 export default Logo;

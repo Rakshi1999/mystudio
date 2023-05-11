@@ -56,7 +56,9 @@
     margin-top: 0.5rem;
 }
 .loginOutline form input{
-    padding: 0.2rem 0.2rem;
+    padding: 0.4rem 0.3rem;
+    border-radius: 5px;
+    border: 0px;
 }
 .loginOutline form button{
     width: 40%;
@@ -67,24 +69,37 @@
     transition: 0.2s ease-in-out;
 }
 
-.loginOutline form button:hover{
+/* .loginOutline form button:hover{
     background-color: rgba(111, 111, 253,0.6);
     cursor: pointer;
-}
+} */
 
 .loginOutline form{
     font-size: larger;
+}
+.btn{
+    border-radius: 5px;
+    border: 1px solid white;
+    background-color: rgba(124, 255, 53,0.6);
+    transition: 0.2s ease-in-out;
+}
+.btn:hover{
+    background-color: rgba(124, 255, 53,0.8);
+    cursor: pointer;
 }
 
 
 @media screen and (max-width:600px) {
     .loginOutline{
-        width: 60%;
-        height: 50%;
+        max-width: 85%;
+        min-height: 40%;
     }
 
     .loginLogo{
         top: 0px;
-        left: 5%;
+        margin-bottom: 18px;
+        position: relative;
+        bottom:6px;
     }
+
 }
