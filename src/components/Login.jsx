@@ -4,6 +4,7 @@ import "../Styles/Login.css";
 import Logo from "./Logo";
 import axios from "axios";
 import { LoginContext } from "../App";
+import PulseLoader from "react-spinners/PulseLoader";
 
 export function setJwt(token) {
   localStorage.setItem("token", token);
@@ -18,9 +19,11 @@ function Login({ setUser }) {
   const [passwrodError, setPasswordError] = useState("");
   const [emailError, setEmailError] = useState("");
   const [generalError, setGeneralError] = useState("");
+  const [isLoginLoading, setIsLoginLoading] = useState(false);
 
   function handleSubmit(e) {
     e.preventDefault();
+    setIsLoginLoading(true);
     axios
       .post("https://musicstudio.onrender.com/login", {
         email: emailRef.current.value,
@@ -34,10 +37,12 @@ function Login({ setUser }) {
         setUser(true);
         contestValue.setUserName(res.data.username);
         navigate("/");
+        setIsLoginLoading(false);
       })
       .catch((err) => {
         // console.log(err);
         // alert(err.response.data.message);
+        setIsLoginLoading(false);
         setGeneralError(err.response.data.message);
       });
   }
@@ -70,7 +75,7 @@ function Login({ setUser }) {
             />
             {passwrodError && <p style={styleObj}>{passwrodError}</p>}
             <button type="submit" className="btn">
-              Login
+              {isLoginLoading ? <PulseLoader /> : "Login"}
             </button>
           </form>
         </div>
