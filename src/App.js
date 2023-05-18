@@ -109,7 +109,7 @@ function App() {
       .catch((err) => {
         console.log("error fetching the data");
       });
-  });
+  }, []);
 
   useEffect(() => {
     let id = setTimeout(() => {
