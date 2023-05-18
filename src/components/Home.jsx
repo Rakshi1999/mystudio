@@ -85,10 +85,6 @@ const Home = () => {
     if (!token) {
       alert("Please sign up for complete access");
       navigate("/mymusic");
-      // } else {
-      //   alert(
-      //     "Thank you for the sign up, please stay tunned we will roll an update soon!!!"
-      //   );
     }
   }
 

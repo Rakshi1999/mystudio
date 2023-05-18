@@ -27,7 +27,6 @@ function Signup() {
           password: passwordRef.current.value,
         })
         .then((res) => {
-          // console.log(res);
           setIsLoading(false);
           if (res.data.message === "success") {
             setModal(true);
@@ -102,7 +101,7 @@ function Signup() {
               onChange={handleConfirm}
             />
             <button type="submit">
-              {isLoading ? <PulseLoader size="10" /> : "SignUp"}
+              {isLoading ? <PulseLoader size="10px" /> : "SignUp"}
             </button>
           </form>
         </div>

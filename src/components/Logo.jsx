@@ -3,7 +3,6 @@ import { LoginContext } from "../App";
 
 function Logo(props) {
   const contextValue = useContext(LoginContext);
-  //   alert(contextValue.isPlaying)
   return (
     <div className="logo">
       <div className="logo-bars">

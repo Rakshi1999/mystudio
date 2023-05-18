@@ -47,7 +47,7 @@ function Modal(props) {
         </fieldset>
         <p className="modal-title">Kindly check your spam emails too.</p>
         <button onClick={handleVerify}>
-          {isLoadingModal ? <PulseLoader size="10" color="white" /> : "Verify"}
+          {isLoadingModal ? <PulseLoader size="5px" color="white" /> : "Verify"}
         </button>
       </div>
     </div>,

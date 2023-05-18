@@ -89,7 +89,6 @@ function App() {
       axios
         .get("https://musicstudio.onrender.com/verify", { headers })
         .then((res) => {
-          console.log(res.data);
           setUserName(res.data.username);
           setUserLogin(true);
           setLoading(false);
@@ -100,6 +99,17 @@ function App() {
         });
     }
   }, []);
+
+  useEffect(() => {
+    axios
+      .get("https://musicstudio.onrender.com/getData")
+      .then((data) => {
+        console.log("end point working!!");
+      })
+      .catch((err) => {
+        console.log("error fetching the data");
+      });
+  });
 
   useEffect(() => {
     let id = setTimeout(() => {
@@ -133,7 +143,7 @@ function App() {
             backgroundColor: "grey",
           }}
         >
-          <HashLoader color="white" size="100" />
+          <HashLoader color="white" size="100px" />
         </div>
       ) : (
         <div className="app-container">

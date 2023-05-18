@@ -5,6 +5,7 @@ import Logo from "./Logo";
 import axios from "axios";
 import { LoginContext } from "../App";
 import PulseLoader from "react-spinners/PulseLoader";
+import Modal from "./Modal";
 
 export function setJwt(token) {
   localStorage.setItem("token", token);
@@ -16,10 +17,12 @@ function Login({ setUser }) {
   const emailRef = useRef();
   const passwordRef = useRef();
 
-  const [passwrodError, setPasswordError] = useState("");
-  const [emailError, setEmailError] = useState("");
   const [generalError, setGeneralError] = useState("");
   const [isLoginLoading, setIsLoginLoading] = useState(false);
+  const [verifyEmailOpen, setVerifyEmailOpen] = useState(false);
+  const [userEmail, setUserEmail] = useState("");
+
+  // .post("https://musicstudio.onrender.com/login", {
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -30,20 +33,28 @@ function Login({ setUser }) {
         password: passwordRef.current.value,
       })
       .then((res) => {
-        // console.log(res);
-        setJwt(res.data.jwt);
-        setPasswordError("");
-        setEmailError("");
-        setUser(true);
-        contestValue.setUserName(res.data.username);
-        navigate("/");
-        setIsLoginLoading(false);
+        console.log(res);
+        if (res.data.message === "otp") {
+          setVerifyEmailOpen(true);
+          setUserEmail(emailRef.current.value);
+        } else {
+          setJwt(res.data.jwt);
+          setUser(true);
+          contestValue.setUserName(res.data.username);
+          navigate("/");
+          setIsLoginLoading(false);
+        }
       })
       .catch((err) => {
-        // console.log(err);
-        // alert(err.response.data.message);
-        setIsLoginLoading(false);
-        setGeneralError(err.response.data.message);
+        console.log(err);
+        if (err.response.data.message === "otp") {
+          setVerifyEmailOpen(true);
+          setUserEmail(emailRef.current.value);
+          setIsLoginLoading(false);
+        } else {
+          setIsLoginLoading(false);
+          setGeneralError(err.response.data.message);
+        }
       });
   }
   const styleObj = {
@@ -53,6 +64,7 @@ function Login({ setUser }) {
   return (
     <>
       <div className="loginBody">
+        <Modal open={verifyEmailOpen} email={userEmail} />
         <div className="loginOutline">
           <div className="loginLogo">{<Logo />}</div>
           <form onSubmit={handleSubmit}>
@@ -65,7 +77,7 @@ function Login({ setUser }) {
               required
               ref={emailRef}
             />
-            {emailError && <p style={styleObj}>{emailError}</p>}
+            {/* {emailError && <p style={styleObj}>{emailError}</p>} */}
             <label htmlFor="userEmail">Password</label>
             <input
               type="password"
@@ -73,7 +85,7 @@ function Login({ setUser }) {
               required
               ref={passwordRef}
             />
-            {passwrodError && <p style={styleObj}>{passwrodError}</p>}
+            {/* {passwrodError && <p style={styleObj}>{passwrodError}</p>} */}
             <button type="submit" className="btn">
               {isLoginLoading ? <PulseLoader /> : "Login"}
             </button>
