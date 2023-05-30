@@ -46,7 +46,9 @@ function Navbar({ user, userName }) {
           {!user ? (
             <NavLink to={"/login"}>Login</NavLink>
           ) : (
-            <span className="cxTitle">{userName}</span>
+            <NavLink to={"/profile"} className="cxTitle">
+              {userName}
+            </NavLink>
           )}
           {!user ? (
             <NavLink to={"/signup"}>Sign up</NavLink>

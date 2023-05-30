@@ -47,16 +47,15 @@ const Home = () => {
 
   function scrollHandlerRight() {
     carouselRef.current.scrollLeft += imgRef.current.clientWidth;
+    carouselRef.current.scrollLeft = carouselRef.current.scrollLeft + 480;
   }
 
   function TrendingScrollHandlerLeft() {
-    // console.log(trendingCarouselRef.current.scrollLeft+" "+"leftbtn");
     trendingCarouselRef.current.scrollLeft -=
       trendingImageRef.current.clientWidth;
   }
 
   function TrendingScrollHandlerRight() {
-    // console.log(trendingCarouselRef.current.scrollLeft+" "+"rightbtn");
     trendingCarouselRef.current.scrollLeft +=
       trendingImageRef.current.clientWidth;
   }

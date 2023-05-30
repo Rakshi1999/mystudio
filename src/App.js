@@ -86,14 +86,17 @@ function App() {
     if (localStorage.getItem("token")) {
       setLoading(true);
       const headers = { Authorization: localStorage.getItem("token") };
+      // console.log(headers);
       axios
         .get("https://musicstudio.onrender.com/verify", { headers })
         .then((res) => {
+          // console.log(res);
           setUserName(res.data.username);
           setUserLogin(true);
           setLoading(false);
         })
         .catch((err) => {
+          // console.log(err);
           setLoading(false);
           alert(err.response.data.message);
         });

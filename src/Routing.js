@@ -1,12 +1,14 @@
-import React from 'react';
-import { Routes, Route } from 'react-router';
-import About from './components/About';
-import ErrorComponent from './components/ErrorComponent';
-import Home from './components/Home';
-import Login from './components/Login';
-import Mymusic from './components/Mymusic';
-import Signup from './components/Signup';
+// eslint-disable-next-line
+import React, { Profiler } from "react";
+import { Routes, Route } from "react-router";
+import About from "./components/About";
+import ErrorComponent from "./components/ErrorComponent";
+import Home from "./components/Home";
+import Login from "./components/Login";
+import Mymusic from "./components/Mymusic";
+import Signup from "./components/Signup";
 import PageNotFound from "./components/PageNotFound";
+import Profile from "./components/Profile";
 
 const Routing = ({ collections, setSong, setUser, user }) => {
   return (
@@ -25,6 +27,7 @@ const Routing = ({ collections, setSong, setUser, user }) => {
             </ErrorComponent>
           }
         />
+        <Route path="/profile" element={<Profile />} />
         <Route path="*" element={<PageNotFound />} />
       </Routes>
     </>
