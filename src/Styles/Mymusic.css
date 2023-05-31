@@ -110,12 +110,6 @@
         background-color: aliceblue;
         transition: 0.25s ease-in-out;
     }
-    /* .rightSection .musicContainer ul li div{
-        margin-left: 10rem;
-    } */
-    /* .rightSection .musicContainer ul:last-child{
-        margin-bottom: 5rem;
-    } */
 }
 
 @media screen and (max-width:555px) {
@@ -140,10 +134,4 @@
         margin-top: 1.5rem;
         background-color: aliceblue;
     }
-    /* .rightSection .musicContainer ul li div{
-        margin-left: 10rem;
-    } */
-    /* .rightSection .musicContainer ul:last-child{
-        margin-bottom: 5rem;
-    } */
 }

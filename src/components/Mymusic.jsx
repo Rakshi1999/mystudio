@@ -40,13 +40,27 @@ function Mymusic({ collections, setSong }) {
                         i === Number(colorIndex)
                           ? "rgb(214, 226, 226)"
                           : "aliceblue",
+                          transform: i === Number(colorIndex)
+                          ? "scale(1.03)"
+                          : "",
                     }}
                   >
                     <div className="coverImg">
-                      <img
+                      {/* <img
                         src={obj.songCover ? obj.songCover : defaultCover}
                         alt="cover"
-                      />
+                      /> */}
+                      <div
+                        style={{
+                          width: "35px",
+                          height: "100%",
+                          backgroundSize:"contain",
+                          backgroundRepeat:"no-repeat",
+                          backgroundPosition:"center",
+                          backgroundImage: `url(${obj.songCover || defaultCover})`,
+                        }}
+
+                      ></div>
                     </div>
                     <div id={i}>{obj.songName}</div>
                     <div
