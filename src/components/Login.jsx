@@ -28,7 +28,7 @@ function Login({ setUser }) {
     e.preventDefault();
     setIsLoginLoading(true);
     axios
-      .post("http://localhost:4000/login", {
+      .post("https://musicstudio.onrender.com/login", {
         email: emailRef.current.value,
         password: passwordRef.current.value,
       })
