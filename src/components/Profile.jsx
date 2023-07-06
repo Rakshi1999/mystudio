@@ -70,6 +70,7 @@ function Profile(props) {
       )
       .then((data) => {
         // console.log(data);
+        // alert()
       })
       .catch((e) => console.log(e));
   }

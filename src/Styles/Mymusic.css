@@ -16,6 +16,7 @@
     margin-bottom: 8rem;
 }
 
+
 .playerContainer{
     margin-top: 3rem;
     width: 350px;
@@ -31,6 +32,10 @@
 .leftSection{
     grid-column: 2/3;
     /* background-color: black; */
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    align-items: center;
 }
 
 .rightSection h3{
