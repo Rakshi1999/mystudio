@@ -61,11 +61,16 @@ body{
 }
 
 .wrapper .carousel{
+    display: flex;
     white-space: nowrap;
     cursor: pointer;
     overflow: hidden;
     overflow-x: scroll;
     scroll-behavior: smooth;
+    list-style: none;
+}
+.carousel >*{
+    margin-left: 1rem;
 }
 
 .carousel *:hover{
@@ -84,12 +89,23 @@ body{
 
 .trendingWrapper{
     position: relative;
+    list-style: none;
+    /* background-color: aqua; */
+
 }
+
+.trendingWrapper li{
+    /* background-color: antiquewhite; */
+    padding: 0px;
+    margin: 0px;
+}
+
 .trendingCardsHolder{
     display: flex;
     cursor: pointer;
     overflow: hidden;
     overflow-x: scroll;
+    /* background-color: antiquewhite; */
 }
 
 .trendingWrapper .left{
@@ -98,14 +114,14 @@ body{
 }
 .trendingWrapper .right{
     top: 70px;
-    right: 40px;
+    right: 10px;
 }
 
 .trendingCardsHolder > *{
     margin-left:4rem;
 }
 
-.trendingCardsHolder > *:hover{
+.trendingCardsHolder *:hover{
     opacity: 0.8;
 }
 
@@ -188,6 +204,29 @@ body{
 .artists{
     height: 320px;
 }
+
+
+hr{
+    width: 0px;
+    height: 1.5px;
+    /* color: green; */
+    /* box-shadow: 0px 0px 4px 10px solid red; */
+    border-color: red;
+    animation-name: hrWidth;
+    animation-duration: 2s;
+    animation-iteration-count:1;
+    animation-delay: 1.5s;
+    width: 50px;
+}
+
+@keyframes hrWidth {
+    0% {width : 0px}
+    25% { width: 25%}
+    50% {width:50%}
+    75% {width:75%}
+    100% {width:100%}
+}
+
 
 @media  screen and (max-width: 1200px){
     .homeNav{
